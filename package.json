@@ -1,0 +1,39 @@
+{
+  "name": "abdeldjallilbaskhealth",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "mocha --import=tsx --timeout 10000 test/**/*.spec.ts",
+    "dev": "NODE_ENV=dev ts-node-dev src/index.ts"
+  },
+  "keywords": [],
+  "author": "djilousp",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "config": "^3.3.12",
+    "express": "^4.19.2",
+    "http-status-codes": "^2.3.0",
+    "mysql2": "^3.11.0",
+    "nanoid": "^3.3.5",
+    "rate-limiter-flexible": "^5.0.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@types/chai": "^4.3.18",
+    "@types/config": "^3.3.4",
+    "@types/express": "^4.17.21",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^22.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.2.0",
+    "@typescript-eslint/parser": "^8.2.0",
+    "chai": "^5.1.1",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "mocha": "^10.7.3",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4"
+  }
+}

@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Environment variables
+.env
+
+# Git metadata
+.git/
+
+# Docker metadata
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Logs
+*.log
+
+# IDE/Editor directories
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db

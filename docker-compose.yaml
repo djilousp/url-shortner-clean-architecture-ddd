@@ -1,0 +1,48 @@
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=baskhealth
+      - DB_NAME=baskhealth_shorturls
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: baskhealth
+      MYSQL_DATABASE: baskhealth_shorturls
+      MYSQL_USER: baskhealth
+      MYSQL_PASSWORD: baskhealth
+    volumes:
+      - ./src/infrastructure/persistance/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db-data:/var/lib/mysql
+    networks:
+      - app-network
+
+  adminer:
+    image: adminer:4.7.5
+    container_name: adminer-baskhealth
+    ports:
+      - "9999:8080"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  db-data:
