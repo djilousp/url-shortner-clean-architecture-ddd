@@ -9,6 +9,34 @@ const rateLimiter = new RateLimiterMemory({
   duration: MAX_DURATION
 });
 
+const userRequests = new Map<string, any>();
+
+class HomeBrowRateLimiter {
+  private readonly duration: number;
+  private readonly requestsMaxCount: number;
+  private readonly usersRequestStorage: Map<string, { numberOfConsumedRequests: number }>;
+
+  constructor(duration: number, requestsMaxCount: number) {
+    this.duration = duration;
+    this.requestsMaxCount = requestsMaxCount;
+    this.usersRequestStorage = new Map();
+  }
+  async consume(ip: string) {
+    const user = this.usersRequestStorage.get(ip);
+    if (user) {
+      if (user.numberOfConsumedRequests >= this.requestsMaxCount) {
+        throw new Error("Max number of requests reached ");
+      }
+      user.numberOfConsumedRequests = user.numberOfConsumedRequests + 1;
+      return user.numberOfConsumedRequests;
+    }
+
+    this.usersRequestStorage.set(ip, { numberOfConsumedRequests: 1 });
+    setTimeout(() => {
+      this.usersRequestStorage.delete(ip);
+    }, this.duration);
+  }
+}
 export const rateLimiterMiddleware = (req: Request, res: Response, next: NextFunction) => {
   rateLimiter
     .consume(req.ip ?? "")
