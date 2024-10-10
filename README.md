@@ -35,6 +35,3 @@ git clone <repo-url>
 docker-compose up
 ```
 
-## Demo:
-
-Link to [Demo](https://drive.google.com/file/d/1T9ThrCEAXvIkOswa4pDjJYU2P80Vnwze/view?usp=sharing "Demo video").
